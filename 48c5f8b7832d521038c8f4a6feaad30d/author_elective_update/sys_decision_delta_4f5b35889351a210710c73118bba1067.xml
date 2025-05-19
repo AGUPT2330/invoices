@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_decision_delta">
+    <sys_decision_delta action="DELETE">
+        <access>public</access>
+        <active>false</active>
+        <answer_table>sys_decision_multi_result</answer_table>
+        <answer_type>reference</answer_type>
+        <delta/>
+        <description/>
+        <enable_publishing>false</enable_publishing>
+        <label/>
+        <name>Invoice Decision Table delta</name>
+        <parent display_value="Invoice Decision Table">36caad0c8375d21038c8f4a6feaad31e</parent>
+        <reference_qualifier/>
+        <status>draft</status>
+        <sys_class_name>sys_decision_delta</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-29 09:07:27</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>4f5b35889351a210710c73118bba1067</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Invoice Decision Table delta</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Invoices" source="x_1097202_invoices">48c5f8b7832d521038c8f4a6feaad30d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Invoices">48c5f8b7832d521038c8f4a6feaad30d</sys_scope>
+        <sys_update_name>sys_decision_delta_4f5b35889351a210710c73118bba1067</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-29 09:07:27</sys_updated_on>
+    </sys_decision_delta>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Invoices">48c5f8b7832d521038c8f4a6feaad30d</application>
+        <file_path/>
+        <instance_id>2bba794a3bbf5258a80ce0bf55e45ac1</instance_id>
+        <instance_name>dev297316</instance_name>
+        <name>sys_decision_delta_4f5b35889351a210710c73118bba1067</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_decision_delta"><sys_decision_delta action="INSERT_OR_UPDATE"><access>public</access><active>false</active><answer_table>sys_decision_multi_result</answer_table><answer_type>reference</answer_type><delta/><description/><enable_publishing>false</enable_publishing><label/><name>Invoice Decision Table delta</name><parent display_value="Invoice Decision Table">36caad0c8375d21038c8f4a6feaad31e</parent><reference_qualifier/><status>draft</status><sys_class_name>sys_decision_delta</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-04-29 09:07:27</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>4f5b35889351a210710c73118bba1067</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Invoice Decision Table delta</sys_name><sys_overrides/><sys_package display_value="Invoices" source="x_1097202_invoices">48c5f8b7832d521038c8f4a6feaad30d</sys_package><sys_policy/><sys_scope display_value="Invoices">48c5f8b7832d521038c8f4a6feaad30d</sys_scope><sys_update_name>sys_decision_delta_4f5b35889351a210710c73118bba1067</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-04-29 09:07:27</sys_updated_on></sys_decision_delta></record_update>]]></payload>
+        <payload_hash>-530003515</payload_hash>
+        <record_name>Invoice Decision Table delta</record_name>
+        <reverted_from/>
+        <source>73755c3b93052210710c73118bba1041</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-29 09:07:27</sys_created_on>
+        <sys_id>4b5b35889351a210710c73118bba106b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19680cd1a550000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-29 09:07:27</sys_updated_on>
+        <type>Delta Decision Table</type>
+        <update_guid>0f5b3588fc51a2109164447a0527ac6a</update_guid>
+        <update_guid_history>0f5b3588fc51a2109164447a0527ac6a:-530003515</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-29 09:09:34</sys_created_on>
+        <sys_db_object display_value="" name="sys_decision_delta">sys_decision_delta</sys_db_object>
+        <sys_id>6745c24ae7cb406cad5dfdd416f63b04</sys_id>
+        <sys_metadata>4f5b35889351a210710c73118bba1067</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Invoice Decision Table delta</sys_name>
+        <sys_package display_value="Invoices" source="x_1097202_invoices">48c5f8b7832d521038c8f4a6feaad30d</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Invoices">48c5f8b7832d521038c8f4a6feaad30d</sys_scope>
+        <sys_scope_delete display_value="">06eacfb531f84c0c80adc050aaeca810</sys_scope_delete>
+        <sys_update_name>sys_decision_delta_4f5b35889351a210710c73118bba1067</sys_update_name>
+        <sys_update_version display_value="sys_decision_delta_4f5b35889351a210710c73118bba1067">4b5b35889351a210710c73118bba106b</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-29 09:09:34</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

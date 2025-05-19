@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_decision_question">
+    <sys_decision_question action="DELETE">
+        <active>true</active>
+        <answer/>
+        <condition/>
+        <decision_table display_value="Invoice Decision Table">36caad0c8375d21038c8f4a6feaad31e</decision_table>
+        <default_answer>true</default_answer>
+        <input_table>var__m_sys_decision_input_36caad0c8375d21038c8f4a6feaad31e</input_table>
+        <label>Invoice Decision Table default result</label>
+        <marked_for_deletion>true</marked_for_deletion>
+        <order>100</order>
+        <sys_class_name>sys_decision_question</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-11-06 08:20:20</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>2cfb65cc8375d21038c8f4a6feaad3aa</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Invoice Decision Table default result</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Invoices" source="x_1097202_invoices">48c5f8b7832d521038c8f4a6feaad30d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Invoices">48c5f8b7832d521038c8f4a6feaad30d</sys_scope>
+        <sys_update_name>sys_decision_question_2cfb65cc8375d21038c8f4a6feaad3aa</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-29 09:08:49</sys_updated_on>
+    </sys_decision_question>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Invoices">48c5f8b7832d521038c8f4a6feaad30d</application>
+        <file_path/>
+        <instance_id>2bba794a3bbf5258a80ce0bf55e45ac1</instance_id>
+        <instance_name>dev297316</instance_name>
+        <name>sys_decision_question_2cfb65cc8375d21038c8f4a6feaad3aa</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_decision_question"><sys_decision_question action="INSERT_OR_UPDATE"><active>true</active><answer/><condition/><decision_table display_value="Invoice Decision Table">36caad0c8375d21038c8f4a6feaad31e</decision_table><default_answer>true</default_answer><input_table>var__m_sys_decision_input_36caad0c8375d21038c8f4a6feaad31e</input_table><label>Invoice Decision Table default result</label><marked_for_deletion>true</marked_for_deletion><order>100</order><sys_class_name>sys_decision_question</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-11-06 08:20:20</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>2cfb65cc8375d21038c8f4a6feaad3aa</sys_id><sys_mod_count>1</sys_mod_count><sys_name>Invoice Decision Table default result</sys_name><sys_overrides/><sys_package display_value="Invoices" source="x_1097202_invoices">48c5f8b7832d521038c8f4a6feaad30d</sys_package><sys_policy/><sys_scope display_value="Invoices">48c5f8b7832d521038c8f4a6feaad30d</sys_scope><sys_update_name>sys_decision_question_2cfb65cc8375d21038c8f4a6feaad3aa</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-04-29 09:08:49</sys_updated_on></sys_decision_question></record_update>]]></payload>
+        <payload_hash>2108285356</payload_hash>
+        <record_name>Invoice Decision Table default result</record_name>
+        <reverted_from/>
+        <source>73755c3b93052210710c73118bba1041</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-29 09:08:49</sys_created_on>
+        <sys_id>9bab79c89351a210710c73118bba1082</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19680ce5ccb0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-29 09:08:49</sys_updated_on>
+        <type>Decision</type>
+        <update_guid>13ab79c84c51a2105d6eb75fc84f5f82</update_guid>
+        <update_guid_history>13ab79c84c51a2105d6eb75fc84f5f82:2108285356,2bd414b7d10522108ef6c53e2b9c1767:-1191821699</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-29 09:09:32</sys_created_on>
+        <sys_db_object display_value="" name="sys_decision_question">sys_decision_question</sys_db_object>
+        <sys_id>549da8a933404720ad13d30869746400</sys_id>
+        <sys_metadata>2cfb65cc8375d21038c8f4a6feaad3aa</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Invoice Decision Table default result</sys_name>
+        <sys_package display_value="Invoices" source="x_1097202_invoices">48c5f8b7832d521038c8f4a6feaad30d</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Invoices">48c5f8b7832d521038c8f4a6feaad30d</sys_scope>
+        <sys_scope_delete display_value="">06eacfb531f84c0c80adc050aaeca810</sys_scope_delete>
+        <sys_update_name>sys_decision_question_2cfb65cc8375d21038c8f4a6feaad3aa</sys_update_name>
+        <sys_update_version display_value="sys_decision_question_2cfb65cc8375d21038c8f4a6feaad3aa">9bab79c89351a210710c73118bba1082</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-29 09:09:32</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

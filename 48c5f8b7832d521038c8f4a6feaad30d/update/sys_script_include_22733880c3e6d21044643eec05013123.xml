@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_1097202_invoices.CreateInvoiceDupli</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>CreateInvoiceDupli</name>
+        <sandbox_callable>true</sandbox_callable>
+        <script><![CDATA[var CreateInvoiceDupli = Class.create();
+CreateInvoiceDupli.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+    type: 'CreateInvoiceDupli',
+
+    validateExcelValues: function() {
+		var attachmentID = this.getParameter('sysparm_attachmentID');
+        var vendorType = this.getParameter('sysparm_vendor');
+        if (!attachmentID) {
+            return false;
+        }
+
+		var sa = new GlideSysAttachment();
+       var inputStream = sa.getContentStream(attachmentID);
+       if (!inputStream) {
+           gs.error('No content found in the CSV file.');
+           return;
+       }
+       var reader = new GlideTextReader(inputStream);
+	   var csvContent = '';
+       var line;
+       while ((line = reader.readLine()) !== null) {
+           csvContent += line + '\n';
+       }
+
+
+    },
+
+    createrecords: function() {
+        gs.info("inside line 136");
+        var arr = [];
+        var currencyType = '';
+        var getSys_id = '';
+        var obj = {};
+        var invoiceNumbers = [];
+        var vendorNumbers = [];
+        var childInvvoiceNumber = [];
+        var vendorsysid = '';
+        var vendorCode = '';
+        var attachmentID = this.getParameter('sysparm_attachmentID');
+        var vendorType = this.getParameter('sysparm_vendor');
+        var gsa = new GlideSysAttachment();
+        var attachmentData = gsa.getContentStream(attachmentID);
+        var excelParser = new sn_impex.GlideExcelParser();
+        excelParser.parse(attachmentData);
+        if (vendorType == 'single') {
+            while (excelParser.next()) {
+
+                gs.info("inside line 9");
+                var rowValue = excelParser.getRow();
+                vendorCode = rowValue["Vendor Code"];
+                arr.push(rowValue);
+            }
+            for (var i = 0; i < arr.length; i++) {
+                gs.info("inside line 104");
+                gs.info(arr[i]["Process No"]);
+                var currencydata = new GlideRecord('fx_currency');
+                currencydata.addEncodedQuery('code=' + arr[i]["Currency"]);
+                currencydata.query();
+                if (currencydata.next()) {
+                    currencyType = currencydata.sys_id;
+                }
+                var createVendor = new GlideRecord('x_1097202_invoices_vendor');
+                createVendor.addEncodedQuery('number=' + arr[i]["Vendor Code"]);
+                createVendor.query();
+                if (createVendor.next()) {
+                    vendorsysid = createVendor.getUniqueValue();
+                }
+                /*else {
+                               createVendor.initialize();
+                               createVendor.number = arr[i]["Vendor Code"];
+                               createVendor.bank_account = "01234567890";
+                               createVendor.bank_name = "Vietnam Bank";
+                               createVendor.tax_registration_number = arr[i]["Tax ID"];
+                               createVendor.partner_bank_type = arr[i]["Currency"];
+                               vendorsysid = createVendor.insert();
+                               vendorNumbers.push(createVendor.number);
+                           }*/
+                gs.info("inside line 262" + vendorNumbers);
+                var invoicedata = new GlideRecord('x_1097202_invoices_invoice');
+                invoicedata.addEncodedQuery("vendor_code.number=" + arr[i]["Vendor Code"]);
+                invoicedata.query();
+                if (invoicedata.next()) {
+                    gs.info("inside line 276");
+                    getSys_id = invoicedata.getUniqueValue();
+                } else {
+                    gs.info("inside line 278");
+                    invoicedata.initialize();
+                    invoicedata.vendor_code = vendorsysid;
+                    invoicedata.currency = currencyType;
+                    invoicedata.invoice_no = arr[i]["Invoice Number"];
+                    invoicedata.text = arr[i]["Header Text"];
+                    invoicedata.tax_amount = arr[i]["Tax Amount"];
+                    invoicedata.single_multiple = true;
+                    getSys_id = invoicedata.insert();
+                    invoiceNumbers.push(invoicedata.number);
+                    gs.info("inside line 272" + invoiceNumbers);
+                }
+                var childinvoicedata = new GlideRecord('x_1097202_invoices_invoice_items');
+                childinvoicedata.initialize();
+                childinvoicedata.tax_code = arr[i]["Tax Code"];
+                childinvoicedata.invoice_date = arr[i]["Document Date"]
+                childinvoicedata.invoice_no = arr[i]["Invoice Number"];
+                childinvoicedata.amount_before_tax = arr[i]["Amount Before Tax"];
+                childinvoicedata.amount_after_tax = arr[i]["Amount Before Tax"];
+                childinvoicedata.tax_amount = arr[i]["Tax Amount"];
+                childinvoicedata.description = arr[i]["Header Text"];
+                childinvoicedata.parent_invoice = getSys_id;
+                childinvoicedata.insert();
+                childInvvoiceNumber.push(childinvoicedata.number);
+                gs.info("inside line 272" + childInvvoiceNumber);
+            }
+
+            obj.vendorRecord = vendorNumbers.toString();
+            obj.invoiceRecord = invoiceNumbers.toString();
+            obj.childInvoiceRecord = childInvvoiceNumber.toString();
+
+            return JSON.stringify(obj);
+        } else {
+            while (excelParser.next()) {
+                var rowValue = excelParser.getRow();
+                arr.push(rowValue);
+            }
+            /*gs.info("inside line 104");
+            gs.info(arr[i]["Process No"]);
+            var invoicedata = new GlideRecord('x_1097202_invoices_invoice');
+            invoicedata.initialize();
+            invoicedata.vendor_code = arr[i]["Vendor Code"];
+            invoicedata.invoice_no = arr[i]["Invoice Number"];
+            var getSys_id = invoicedata.insert();
+            var childinvoicedata = new GlideRecord('x_1097202_invoices_po_line_items');
+            childinvoicedata.initialize();
+            childinvoicedata.tax_code = arr[i]["Tax Code"];
+            childinvoicedata.amount = arr[i]["Amount Before Tax"];
+            childinvoicedata.invoice_for = getSys_id;
+            childinvoicedata.insert();*/
+            for (var i = 0; i < arr.length; i++) {
+                gs.info("inside line 104");
+                gs.info(arr[i]["Process No"]);
+                var currencydata = new GlideRecord('fx_currency');
+                currencydata.addEncodedQuery('code=' + arr[i]["Currency"]);
+                currencydata.query();
+                if (currencydata.next()) {
+                    currencyType = currencydata.sys_id;
+                }
+                var createVendor = new GlideRecord('x_1097202_invoices_vendor');
+                createVendor.addEncodedQuery('number=' + arr[i]["Vendor Code"]);
+                createVendor.query();
+                if (createVendor.next()) {
+                    vendorsysid = createVendor.getUniqueValue();
+                }
+                /*else {
+                               createVendor.initialize();
+                               createVendor.number = arr[i]["Vendor Code"];
+                               createVendor.bank_account = "01234567890";
+                               createVendor.bank_name = "Vietnam Bank";
+                               createVendor.tax_registration_number = arr[i]["Tax ID"];
+                               createVendor.partner_bank_type = arr[i]["Currency"];
+                               vendorsysid = createVendor.insert();
+                               vendorNumbers.push(createVendor.number);
+                           }*/
+                gs.info("inside line 262" + vendorNumbers);
+                var invoicedata = new GlideRecord('x_1097202_invoices_invoice');
+                invoicedata.addEncodedQuery("vendor_code.number=" + arr[i]["Vendor Code"]);
+                invoicedata.query();
+                if (invoicedata.next()) {
+                    gs.info("inside line 276");
+                    getSys_id = invoicedata.getUniqueValue();
+                    invoicedata.total_invoice_amount_before_tax = parseFloat(invoicedata.total_invoice_amount_before_tax) + parseFloat(arr[i]["Amount Before Tax"]);
+                    invoicedata.total_tax_amount = parseFloat(invoicedata.total_tax_amount) + parseFloat(arr[i]["Total Amount"]);
+                    invoicedata.total_invoice_amount_after_tax = parseFloat(invoicedata.total_invoice_amount_after_tax) + parseFloat(arr[i]["Amount Before Tax"]);
+                    invoicedata.update();
+                } else {
+                    gs.info("inside line 278");
+                    invoicedata.initialize();
+                    invoicedata.vendor_code = vendorsysid;
+                    invoicedata.currenc1 = currencyType;
+                    invoicedata.invoice_no = arr[i]["Invoice Number"];
+                    invoicedata.tex0 = arr[i]["Header Text"];
+                    // invoicedata.tax_amount = arr[i]["Tax Amount"];
+                    // invoicedata.invoice_amount_incl_tax = arr[i]["Tax Amount"];
+                    // invoicedata.invoice_date = arr[i]["Tax Amount"];
+                    invoicedata.posting_dat0 = arr[i]["Document Date"];
+                    invoicedata.single_multiple = false;
+                    getSys_id = invoicedata.insert();
+                    invoiceNumbers.push(invoicedata.number);
+                    gs.info("inside line 272" + invoiceNumbers);
+                }
+                var childinvoicedata = new GlideRecord('x_1097202_invoices_invoice_items');
+                childinvoicedata.initialize();
+                childinvoicedata.tax_code = arr[i]["Tax Code"];
+                childinvoicedata.invoice_date = arr[i]["Document Date"]
+                childinvoicedata.invoice_no = arr[i]["Invoice Number"];
+                childinvoicedata.amount_before_tax = arr[i]["Amount Before Tax"];
+                childinvoicedata.amount_after_tax = arr[i]["Amount Before Tax"];
+                childinvoicedata.tax_amount = arr[i]["Tax Amount"];
+                childinvoicedata.description = arr[i]["Header Text"];
+                childinvoicedata.parent_invoice = getSys_id;
+                childinvoicedata.insert();
+                childInvvoiceNumber.push(childinvoicedata.number);
+                gs.info("inside line 272" + childInvvoiceNumber);
+
+            }
+        }
+    },
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-12-13 11:00:43</sys_created_on>
+        <sys_id>22733880c3e6d21044643eec05013123</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>CreateInvoiceDupli</sys_name>
+        <sys_package display_value="Invoices" source="x_1097202_invoices">48c5f8b7832d521038c8f4a6feaad30d</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Invoices">48c5f8b7832d521038c8f4a6feaad30d</sys_scope>
+        <sys_update_name>sys_script_include_22733880c3e6d21044643eec05013123</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-30 13:54:18</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>22733880c3e6d21044643eec05013123</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-01-30 13:54:17</sys_created_on>
+        <sys_id>158728a3c3971210c5d75242b4013181</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-30 13:54:17</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
